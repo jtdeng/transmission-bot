@@ -5,6 +5,8 @@
 
 from sleekxmpp import ClientXMPP
 from sleekxmpp.exceptions import IqError, IqTimeout
+#from sleekxmpp.stanza.htmlim import HTMLIM
+
 import traceback
 import settings
 from settings import logger
@@ -20,6 +22,7 @@ class TransmissionBot(ClientXMPP):
         #register plugins
         self.register_plugin('xep_0030') # Service Discovery
         self.register_plugin('xep_0047', {'accept_stream': self.accept_stream}) # In-band Bytestreams
+        self.register_plugin('xep_0199') # XMPP Ping
 
         self.add_event_handler("session_start", self.session_start)
         self.add_event_handler("message", self.message)
@@ -29,7 +32,7 @@ class TransmissionBot(ClientXMPP):
 
     def session_start(self, event):
         try:
-            self.send_presence()
+            self.send_presence(pstatus = "Ready to rock!")
             self.get_roster()
         except IqError as err:
             logger.error('There was an error getting the roster')
@@ -58,15 +61,14 @@ class TransmissionBot(ClientXMPP):
                 msg.reply('\n'+resp).send()
             else:
                 msg.reply(msg_text).send()
-        except Exception,e:
+                #self.send_message(  mto=msg['from'],
+                #                    mtype='chat',
+                #                    mbody=msg_text,
+                #                    mhtml='''<a href="http://www.google.co.jp">%s</a>'''% (msg_text))
+        except:
             exc = traceback.format_exc()
             msg.reply(exc).send()
 
-    # def changed_status(self, ):
-    #     pass
-
-    # def disconnected(self,):
-    #     pass
 
     def accept_stream(self, iq):
         """

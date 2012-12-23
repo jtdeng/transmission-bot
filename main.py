@@ -4,6 +4,8 @@
 import settings
 from settings import logger
 from xmppbot import TransmissionBot
+from timer import PeriodicTimer
+import tasks  
 import traceback
 
 if __name__ == '__main__':
@@ -17,6 +19,10 @@ if __name__ == '__main__':
     
     try:
         xmpp.connect()
+        task = PeriodicTimer(settings.task_interval, tasks.periodic_task, xmpp, settings)
+        task.start()
         xmpp.process(block=True)
+        print 'xmpp process finished'
+        task.cancel()
     except:
         logger.fatal(traceback.format_exc())
