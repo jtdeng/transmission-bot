@@ -1,3 +1,9 @@
+transmission-bot
+================
+
+transmission-bot is an python powered XMPP bot to control Transmission BitTorrent server
+
+
 # Introduction
 transmission-bot is an python powered XMPP bot which works as an agent 
 between transmission daemon and your XMPP enabled IM, so that you can control 
