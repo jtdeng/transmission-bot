@@ -42,14 +42,17 @@ startup.
 * Add a new download by url or base64 of torrent file
 ```
     $add url http://www.btdownload.net/file.torrent
+
     $add url magnet:?xt=urn:btih:E1F86D6127D705871A8053533BD4B55776FD31E5...
+    
     $add base64 '<base64 string of torrent file>'
 ```
 * Start or stop one or more downloads by comma separated ids
-
+```
     $start <ids>|all
+    
     $stop <ids>|all
-
+```
 * Remove one or more downloads (delete torrent only or delete data)
 
     $remove <ids>|all
