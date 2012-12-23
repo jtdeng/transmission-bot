@@ -11,19 +11,19 @@ on your DD-WRT router from your mobile phone.
 ## Installation
 transmission-bot requires the following python libraries, you can install them
 with pip or easy_install
-
+```
     $ sudo pip install transmissionrpc
     $ sudo pip install dnspython
     $ sudo pip install sleekxmpp
     $ sudo pip install feedparser
-
+```
 If you run transmission-bot on DD-WRT with opkg installed, you need to install
 the following packages before installing sleekxmpp
-
+```
     $ opkg install python-expat
     $ opkg install python-openssl
     $ opkg install pyopenssl
-
+```
 ## Configuration
 * Static configuration is saved in settings.py, each parameter is described there.
 * Dynamic configuration is saved in dynamic.json, which is created on first 
@@ -32,19 +32,19 @@ startup.
 
 ## Functions
 * Show usage of all supported commands or the one specified
-
+```
     $help [command]
-
+```
 * Show the status of all downloads
-
+```
     $status
-
+```
 * Add a new download by url or base64 of torrent file
-
+```
     $add url http://www.btdownload.net/file.torrent
     $add url magnet:?xt=urn:btih:E1F86D6127D705871A8053533BD4B55776FD31E5...
     $add base64 '<base64 string of torrent file>'
-
+```
 * Start or stop one or more downloads by comma separated ids
 
     $start <ids>|all
