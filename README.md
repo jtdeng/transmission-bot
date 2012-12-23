@@ -94,4 +94,5 @@ startup.
     ```
 
 ## Issues
-Can not send torrent files using IM file transfer due to [SleekXMPP limitation](https://groups.google.com/forum/?fromgroups=#!msg/sleekxmpp-discussion/e-9wEwic2gk/GFO9edQYj4AJ), workaround is to use base64 string of the torrent file
+* Can not send torrent files using IM file transfer due to [SleekXMPP limitation](https://groups.google.com/forum/?fromgroups=#!msg/sleekxmpp-discussion/e-9wEwic2gk/GFO9edQYj4AJ), workaround is to use base64 string of the torrent file
+* Only tested on python 2.7
