@@ -59,7 +59,7 @@ startup.
 
     $notify
     $notify [on|off]
-    
+
 * Automatic stop torrent when 100% downloaded
 
     $autostop
