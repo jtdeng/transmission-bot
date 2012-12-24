@@ -29,6 +29,12 @@ the following packages before installing sleekxmpp
 * Dynamic configuration is saved in dynamic.json, which is created on first 
 startup.
 
+## Run
+Clone the repository, configure the settings.py and run main.py
+
+    $ git clone https://github.com/jtdeng/transmission-bot.git
+    $ cd transmission-bot
+    $ python main.py
 
 ## Functions
 * Show usage of all supported commands or the one specified
