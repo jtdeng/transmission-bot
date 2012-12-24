@@ -11,7 +11,7 @@ def periodic_task(xmpp, settings):
 	xmpp: the TransmissionBot instance, use to send messages
 	settings: the global settings'''
 	
-	# xmpp.send_message(  mto='jtdeng@gmail.com',
+	# xmpp.send_message(  mto='',
  #                        mtype='chat',
  #                        mbody='hello',
  #                        mhtml='''<a href="http://www.google.co.jp">hello</a>''')
