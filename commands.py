@@ -64,11 +64,16 @@ def cmd_status(*args):
 	tids.sort()
 	tfiles = TransmissionClient.get_files(tids)
 	
+	disk_usage = 0.0
 	for tid in tids:
 		to = torrents[tid]
 		total_size = sum([x['size'] for x in tfiles[tid].values()])/float(1024*1024*1024)
+		disk_usage += (to.progress*total_size)/100
 		resp += '%2d  %s  %.2f%%  %.2fG  %-s\n' % (tid, to.status, to.progress, total_size, to.name)
+	
+	resp += 'Total disk usage is %.2fG\n'%(disk_usage)
 	return resp
+
 
 def cmd_add(*args):
 	"""add a new torrent to transmission
