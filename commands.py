@@ -18,7 +18,7 @@ __module__ = sys.modules[globals()['__name__']]
 
 def sort_as_int(lst):
 	'''sort a list of numeric string as integer'''
-	int_lst = [int(x) for x in lst]
+	int_lst = [int(x) for x in lst if x.isdigit()]
 	int_lst.sort()
 	return [str(x) for x in int_lst]
 
