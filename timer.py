@@ -9,35 +9,28 @@ import time
 from settings import logger
 import traceback
 
-class PeriodicTimer(object):
+class PeriodicTimer(threading.Thread):
 	def __init__(self, interval, callback, *args, **kwargs):
+		threading.Thread.__init__(self)
 		self.interval = interval
+		self.callback = callback
 		self.args = args
 		self.kwargs = kwargs
+		self.quit = False
 		
-		#print args, kwargs
-		@wraps(callback)
-		def wrapper(*args, **kwargs):
+	def run(self):
+		while not self.quit:
 			try:
-				ok = callback(*args, **kwargs)
+				cont = self.callback(*self.args, **self.kwargs)
+				self.quit = not cont
+				time.sleep(self.interval)
 			except:
 				exc = traceback.format_exc()
 				logger.warning(exc)
-				ok = True
-
-			if ok:
-				self.thread = threading.Timer(self.interval, self.callback, args, kwargs)
-				self.thread.start()
-
-		self.callback = wrapper
-
-	def start(self):
-		self.thread = threading.Timer(self.interval, self.callback, self.args, self.kwargs)
-		self.thread.start()
-
+	
 	def cancel(self):
-		self.thread.cancel()
-
+		self.quit = True
+		self.join()
 
 
 
@@ -48,5 +41,5 @@ if __name__ == '__main__':
 	
 	t = PeriodicTimer(3, say_hello, 'James', country='China')	
 	t.start()
-	time.sleep(4)
+	time.sleep(10)
 	t.cancel()
